@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+// Componentes
+@import './componentes/variables.scss';
+@import './componentes/buttons.scss';
+
+// Bases
+@import './bases/navbar.scss';
+@import './bases/catalogo-productos.scss';
+@import './bases/carrito.scss';
+

@@ -1,0 +1,16 @@
+.catalogo--productos{
+    margin-top: 25px;
+}
+
+#catalogo{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tarjetas{
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}

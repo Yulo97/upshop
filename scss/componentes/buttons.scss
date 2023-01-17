@@ -1,0 +1,16 @@
+@import './variables.scss';
+
+.btn-primario{
+    background-color: $rosaOscuro;
+    color: #fff;
+    border-radius: 2px;
+    :hover{
+        background-color: $rosa !important;
+    }
+}
+
+.btn-secundario{
+    background-color: $gris;
+    color: #fff;
+    border-radius: 2px;
+}

@@ -1,0 +1,35 @@
+.nav__carrito{
+    cursor:pointer;
+    display: flex;
+    align-items: center;
+    i{
+        color:$rosa;
+        font-size: 35px;
+    }
+    #carrito__numero{
+        flex-wrap: wrap;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #fff;
+        font-size: 15px;
+        padding:2px;
+        margin-left: 5px;
+        background-color: $rosa;
+        border: 2px solid $rosa;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+    }
+}
+
+.carrito__producto{
+    list-style: none;
+    margin-bottom: 5px;
+    div div i{
+        font-size: 22px;
+        color: $rosaOscuro;
+        cursor: pointer;
+    }
+}

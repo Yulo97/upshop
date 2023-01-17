@@ -1,0 +1,20 @@
+@import '../componentes/variables.scss';
+
+.nav__buscador form {
+    max-width: 300px;
+}
+
+
+.nav__menus {
+    margin-top: 10px;
+    width: 100%;
+    list-style: none;
+    li {
+        text-transform: uppercase;
+        margin: 0 20px 0 20px;
+        color: $rosa;
+        font-family: Montserrat;
+        cursor: pointer;
+        font-size: 14px;
+    }
+}

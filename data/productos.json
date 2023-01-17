@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "nombre": "Remera Negra",
+        "categoria": "Remeras",
+        "precio": 1500,
+        "costo": 500,
+        "stock": 5,
+        "imagen": "./imagenes/foto1.jpeg"
+    },
+    {
+        "id": 2,
+        "nombre": "Remera Blanca",
+        "categoria": "Remeras",
+        "precio": 1800,
+        "costo": 600,
+        "stock": 1,
+        "imagen": "./imagenes/foto2.jpeg"
+    },
+    {
+        "id": 3,
+        "nombre": "Pantalon de Jean",
+        "categoria": "Pantalon",
+        "precio": 3500,
+        "costo": 1000,
+        "stock": 3,
+        "imagen": "./imagenes/foto3.jpeg"
+    },
+    {
+        "id": 4,
+        "nombre": "Campera Cuero",
+        "categoria": "Abrigo",
+        "precio": 9500,
+        "costo": 3000,
+        "stock": 2,
+        "imagen": "./imagenes/foto4.jpeg"
+    }
+]
