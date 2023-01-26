@@ -2,7 +2,7 @@
     margin-top: 25px;
 }
 
-#catalogo{
+#catalogo-productos{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -13,4 +13,8 @@
     padding: 20px;
     align-items: center;
     justify-content: center;
+}
+
+.product-id{
+    display: none;
 }
