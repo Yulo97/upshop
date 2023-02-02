@@ -1,12 +1,14 @@
-.catalogo--productos{
-    margin-top: 25px;
+.catalogo{
+    padding: 0;
+    margin: 0;
+
+    #catalogo-productos{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
 
-#catalogo-productos{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
 
 .tarjetas{
     display: flex;

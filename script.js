@@ -3,94 +3,145 @@ const catalogoProductos = document.querySelector('#catalogo-productos');
 const iconCarrito = document.querySelector('#carrito__numero');
 const listaModalCarrito = document.querySelector('#listaModalCarrito');
 const spanTotal = document.querySelector('#carritoTotal')
+const paginaIndex = document.querySelector('#paginaIndex')
+const paginaDetalle = document.querySelector('#paginaDetalle')
 
 let carrito = [];
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('data/productos.json')
-    .then(response => response.json())
-    .then(data => {
-        for (const product of data) {
-            const elemento = document.createElement('div');
-            elemento.classList.add('tarjetas')
-            elemento.innerHTML = `<div class="card" style="width: 18rem;">
-            <img src="${product.imagen}" class="card-img-top">
-            <div class="card-body justify-content-center">
-              <h5 class="card-title">${product.nombre}</h5>
-              <p class="card-text">Categoria: ${product.categoria}</p>
-              <p class="card-text">Precio: $<span class="producto-precio">${product.precio}</span></p>
-              <a href="#" class="btn btn-secundario btn-agregar-carrito">Ver</a>
-              <a href="#" class="btn btn-primario btn-agregar-carrito">Agregar al Carrito</a>
-              <span class="product-id">${product.id}</span>
-            </div>
-          </div>`
-            catalogoProductos.appendChild(elemento);
-        }
-    })
-    .catch(err => console.log(err))
+    if (paginaIndex) {
+        fetch('data/productos.json')
+            .then(response => response.json())
+            .then(data => {
+                for (const product of data) {
+                    const elemento = document.createElement('div');
+                    elemento.classList.add('tarjetas')
+                    elemento.innerHTML = `<div class="card" style="width: 18rem;">
+                <img src="${product.imagen}" class="card-img-top">
+                <div class="card-body justify-content-center">
+                  <h5 class="card-title">${product.nombre}</h5>
+                  <p class="card-text">Categoria: ${product.categoria}</p>
+                  <p class="card-text">Precio: $<span class="producto-precio">${product.precio}</span></p>
+                  <a href="#" class="btn btn-secundario btn-ver-producto">Ver</a>
+                  <a href="#" class="btn btn-primario btn-agregar-carrito">Agregar al Carrito</a>
+                  <span class="product-id">${product.id}</span>
+                </div>
+              </div>`
+                    catalogoProductos.appendChild(elemento);
+                }
+            })
+            .catch(err => console.log(err))
 
-    if(localStorage.getItem("carrito")){
-        carrito = JSON.parse(localStorage.getItem("carrito"))
+        if (localStorage.getItem("carrito")) {
+            carrito = JSON.parse(localStorage.getItem("carrito"))
+            actualizarCarrito()
+            actualizarTotalCarrito()
+        }
+    }
+    else if (paginaDetalle) {
+
+        const precio = document.querySelector('.precio__numero')
+        const titulo = document.querySelector('#producto__titulo')
+        const img = document.querySelector('#img__foto')
+
+        const product = JSON.parse(localStorage.getItem('producto'));
+
+        precio.innerHTML = product.precio;
+        titulo.innerHTML = product.nombre;
+        img.src = product.imagen
+
+        console.log(product)
+
         actualizarCarrito()
         actualizarTotalCarrito()
     }
 })
+
+// const traerProductos = (categoria) => {
+// if (categoria == null){
+
+// }
+// }
 
 // agregar producto al carrito
-catalogoProductos.addEventListener('click', e => {
-    if (e.target.classList.contains('btn-agregar-carrito')) {
-        const divProduct = (e.target.parentElement)
+if (paginaIndex) {
+    catalogoProductos.addEventListener('click', e => {
+        e.preventDefault();
+        if (e.target.classList.contains('btn-agregar-carrito')) {
+            const divProduct = (e.target.parentElement)
 
-        const product = {
-            id: Number(divProduct.querySelector('.product-id').textContent),
-            cantidad: 1,
-            imagen: divProduct.parentElement.querySelector('img').getAttribute("src"),
-            nombre: divProduct.querySelector('h5').textContent,
-            precio: Number(divProduct.querySelector('.producto-precio').textContent)
+            const product = {
+                id: Number(divProduct.querySelector('.product-id').textContent),
+                cantidad: 1,
+                imagen: divProduct.parentElement.querySelector('img').getAttribute("src"),
+                nombre: divProduct.querySelector('h5').textContent,
+                precio: Number(divProduct.querySelector('.producto-precio').textContent)
+            }
+
+            const index = carrito.findIndex(element => product.id === element.id)
+
+            if (index !== -1) {
+                carrito[index].cantidad++;
+            }
+            else {
+                carrito.push(product)
+            }
+
+            actualizarCarrito()
+            actualizarTotalCarrito()
+            console.log(carrito)
         }
+        else if (e.target.classList.contains('btn-ver-producto')) {
+            const divProduct = (e.target.parentElement)
 
-        const index = carrito.findIndex( element => product.id === element.id)
+            const product = {
+                id: Number(divProduct.querySelector('.product-id').textContent),
+                imagen: divProduct.parentElement.querySelector('img').getAttribute("src"),
+                nombre: divProduct.querySelector('h5').textContent,
+                precio: Number(divProduct.querySelector('.producto-precio').textContent)
+            }
 
-        if(index !== -1){
-            carrito[index].cantidad++;      
+            localStorage.setItem('producto', JSON.stringify(product))
+
+            window.location.pathname = "detalle.html";
         }
-        else{
-            carrito.push(product)
-        }
-
-        actualizarCarrito()
-        actualizarTotalCarrito()
-        console.log(carrito)
-    }
-})
+    })
+}
+else if(paginaDetalle){
+    
+}
 
 // eliminar producto del carrito
 listaModalCarrito.addEventListener('click', e => {
-    if(e.target.classList.contains('icon-eliminar-producto')){
+    if (e.target.classList.contains('icon-eliminar-producto')) {
         const productoDelCarrito = e.target.parentElement.parentElement
 
         const objeto = {
             cantidad: productoDelCarrito.querySelector('.carrito-cantidad-producto').textContent,
             id: Number(productoDelCarrito.querySelector('.product-id').textContent)
         }
-            const index = carrito.findIndex( element => element.id === objeto.id   )
+        const index = carrito.findIndex(element => element.id === objeto.id)
 
-            if(index !== -1){
-                if(carrito[index].cantidad > 1){
-                    carrito[index].cantidad--;
-                }
-                else{
-                    carrito.splice(index, 1)
-                }
+        if (index !== -1) {
+            if (carrito[index].cantidad > 1) {
+                carrito[index].cantidad--;
             }
-            actualizarCarrito();
-            actualizarTotalCarrito();
-            console.log(carrito)
+            else {
+                carrito.splice(index, 1)
+            }
+        }
+        actualizarCarrito();
+        actualizarTotalCarrito();
+        console.log(carrito)
     }
 })
 
 // actualizar HTML de carrito
 const actualizarCarrito = () => {
+    if(paginaDetalle){
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+    }
+
     listaModalCarrito.innerHTML = "";
     let cantidad = 0;
 

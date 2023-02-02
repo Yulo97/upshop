@@ -1,9 +1,12 @@
-@import '../componentes/variables.scss';
+//@import '../componentes/variables.scss';
+
+nav{
+    position: sticky;
+}
 
 .nav__buscador form {
     max-width: 300px;
 }
-
 
 .nav__menus {
     margin-top: 10px;

@@ -18,6 +18,10 @@
   border-radius: 2px;
 }
 
+nav {
+  position: sticky;
+}
+
 .nav__buscador form {
   max-width: 300px;
 }
@@ -36,11 +40,11 @@
   font-size: 14px;
 }
 
-.catalogo--productos {
-  margin-top: 25px;
+.catalogo {
+  padding: 0;
+  margin: 0;
 }
-
-#catalogo-productos {
+.catalogo #catalogo-productos {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -91,6 +95,57 @@
   font-size: 22px;
   color: #de2572;
   cursor: pointer;
+}
+
+.carousel-index {
+  max-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.producto__contenedor {
+  max-width: 70vw;
+  display: flex;
+  align-content: center;
+  margin: 0 auto;
+  font-family: Montserrat;
+  margin-top: 4vh;
+  padding: 50px 0 50px 0;
+}
+
+.producto__imagen {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.producto__descripcion {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 10px;
+}
+.producto__descripcion h1 {
+  font-size: 3rem;
+  margin: 10px;
+  text-transform: uppercase;
+}
+.producto__descripcion span {
+  margin: 10px;
+}
+.producto__descripcion .detalle__precio {
+  text-transform: uppercase;
+  margin: 10px;
+  font-size: 1.6rem;
+}
+
+.detalle__botones {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.detalle__botones button {
+  width: 60%;
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,48 @@
+.producto__contenedor {
+    max-width: 70vw;
+    display: flex;
+    align-content: center;
+    margin: 0 auto;
+    font-family: Montserrat;
+    margin-top: 4vh;
+    padding: 50px 0 50px 0;
+}
+
+.producto__imagen {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.producto__descripcion {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 10px;
+
+    h1 {
+        font-size: 3rem;
+        margin: 10px;
+        text-transform: uppercase;
+    }
+
+    span {
+        margin: 10px;
+    }
+
+    .detalle__precio {
+        text-transform: uppercase;
+        margin: 10px;
+        font-size: 1.6rem;
+    }
+
+}
+
+.detalle__botones {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    button{
+        width: 60%;
+    }
+}
