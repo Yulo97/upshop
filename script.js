@@ -1,7 +1,7 @@
 // nodos html //
 const catalogoProductos = document.querySelector('#catalogo-productos');
 const iconCarrito = document.querySelector('#carrito__numero');
-const listaModalCarrito = document.querySelector('#listaModalCarrito');
+const listaModalCarrito = document.querySelector('.listaModalCarrito');
 const spanTotal = document.querySelector('#carritoTotal')
 const paginaIndex = document.querySelector('#paginaIndex')
 const paginaDetalle = document.querySelector('#paginaDetalle')
@@ -10,19 +10,24 @@ let carrito = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     if (paginaIndex) {
-        if(!localStorage.getItem('menuCategoria')){
+        if (!localStorage.getItem('menuCategoria')) {
             traerProductos()
         }
-        else if(localStorage.getItem('menuCategoria')){
+        else if (localStorage.getItem('menuCategoria')) {
             traerProductos(localStorage.getItem('menuCategoria'))
             localStorage.removeItem('menuCategoria')
         }
         paginaIndex.addEventListener('click', e => {
-            if(e.target.classList.contains('categoria__producto')){
+            if (e.target.classList.contains('categoria__producto')) {
                 traerProductos(e.target.textContent.toUpperCase())
             }
         })
+
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+        actualizarCarrito()
+        actualizarTotalCarrito()
     }
+
     else if (paginaDetalle) {
 
         const precio = document.querySelector('.precio__numero')
@@ -35,13 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
         titulo.innerHTML = product.nombre;
         img.src = product.imagen
 
-        console.log(product)
-
         actualizarCarrito()
         actualizarTotalCarrito()
 
+        console.log(carrito)
+
         paginaDetalle.addEventListener('click', e => {
-            if(e.target.classList.contains('categoria__producto')){
+            if (e.target.classList.contains('categoria__producto')) {
                 window.location.pathname = "index.html";
                 localStorage.setItem('menuCategoria', e.target.textContent.toUpperCase())
             }
@@ -150,6 +155,8 @@ else if (paginaDetalle) {
 // eliminar producto del carrito
 listaModalCarrito.addEventListener('click', e => {
     if (e.target.classList.contains('icon-eliminar-producto')) {
+        console.log(carrito)
+
         const productoDelCarrito = e.target.parentElement.parentElement
 
         const objeto = {
@@ -168,7 +175,6 @@ listaModalCarrito.addEventListener('click', e => {
         }
         actualizarCarrito();
         actualizarTotalCarrito();
-        console.log(carrito)
     }
 })
 
@@ -217,5 +223,3 @@ const actualizarTotalCarrito = () => {
     }
     spanTotal.innerHTML = `Total: $${total}`;
 }
-
-
