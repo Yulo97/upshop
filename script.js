@@ -155,7 +155,6 @@ else if (paginaDetalle) {
 // eliminar producto del carrito
 listaModalCarrito.addEventListener('click', e => {
     if (e.target.classList.contains('icon-eliminar-producto')) {
-        console.log(carrito)
 
         const productoDelCarrito = e.target.parentElement.parentElement
 
@@ -168,11 +167,16 @@ listaModalCarrito.addEventListener('click', e => {
         if (index !== -1) {
             if (carrito[index].cantidad > 1) {
                 carrito[index].cantidad--;
+                
             }
             else {
                 carrito.splice(index, 1)
+
             }
         }
+
+        localStorage.setItem("carrito", JSON.stringify(carrito))
+
         actualizarCarrito();
         actualizarTotalCarrito();
     }
