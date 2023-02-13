@@ -22,7 +22,11 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;1,200&display=swap"
         rel="stylesheet">
 
+    <!-- toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <link rel="stylesheet" href="css/styles.css">
+    
 </head>
 
 <body>
@@ -59,7 +63,7 @@
     </nav>
 
     <!-- Modal Carrito-->
-    
+
     <div class="modal fade" id="modalCarrito" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -83,12 +87,12 @@
         </div>
     </div>
 
-    <main class="row producto__contenedor">
+    <main class="row producto__contenedor tarjetas">
         <div class="col-6 producto__imagen">
-            <img id="img__foto"src="./imagenes/foto1.jpeg" alt="">
+            <img class="imagen-del-producto" id="img__foto" src="./imagenes/foto1.jpeg" alt="">
         </div>
         <div class="col-6 producto__descripcion">
-            <h1 id="producto__titulo">Remera Blanca</h1>
+            <h1 class="producto__titulo titulo-del-producto">Remera Blanca</h1>
             <span>
                 <p>
                     ¿CUÁNTO MIDO?
@@ -106,13 +110,11 @@
                     Look super canchero, ideal para el dia y la noche
                     Yendoooo!
                 </p>
+                <span class="product-id">${product.id}</span>
 
             </span>
             <p class="detalle__precio">Precio: $<span class="precio__numero">5.000</span></p>
-            <div class="row detalle__botones">
-                <button class="btn btn-primario">Agregar al Carrito</button>
-                </div>
-            </div>
+            <button class="btn btn-primario btn-agregar-carrito">Agregar al Carrito</button>
         </div>
 
     </main>
@@ -123,7 +125,14 @@
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
 
-    <script src="./script.js"></script>
+    <!-- CDN toastify -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- CDN Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="./carrito.js"></script>
+    <script src="./detalle.js"></script>
 </body>
 
 </html>
