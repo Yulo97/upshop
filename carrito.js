@@ -71,6 +71,21 @@ const agregarProducto = (event, id, imagen, nombre, precio) => {
         actualizarCarrito()
         actualizarTotalCarrito()
         console.log(carrito)
+
+        Toastify({
+            text: `Producto Agregado: ${nombre}`,
+            duration: 3500,
+            gravity: "bottom", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+              background: "linear-gradient(to right, #DE2572, #FAAE7B)",
+            },
+            onClick: () => { // Callback after click
+                $('#modalCarrito').modal('show');
+                //document.querySelector('#modalCarrito').modal('show'); // Esto no funciona, por eso se uso Jquery
+            } 
+          }).showToast();
     }
     else if (event.target.classList.contains('btn-ver-producto')) {
         const divProduct = (event.target.parentElement)
@@ -86,21 +101,6 @@ const agregarProducto = (event, id, imagen, nombre, precio) => {
 
         window.location.pathname = "detalle.html";
     }
-
-    Toastify({
-        text: `Producto Agregado: ${nombre}`,
-        duration: 3500,
-        gravity: "bottom", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
-        stopOnFocus: true, // Prevents dismissing of toast on hover
-        style: {
-          background: "linear-gradient(to right, #DE2572, #FAAE7B)",
-        },
-        onClick: () => { // Callback after click
-            $('#modalCarrito').modal('show');
-            //document.querySelector('#modalCarrito').modal('show'); // Esto no funciona, por eso se uso Jquery
-        } 
-      }).showToast();
 }
 
 // eliminar producto del carrito
